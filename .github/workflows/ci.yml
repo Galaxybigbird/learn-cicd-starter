@@ -37,8 +37,14 @@ jobs:
       - name: Check formatting
         run: test -z "$(go fmt ./...)"
 
+      - name: List files
+        run: ls -R
+        working-directory: ${{ github.workspace }}
+
       - name: Install staticcheck
         run: go install honnef.co/go/tools/cmd/staticcheck@latest
+        working-directory: ${{ github.workspace }}
 
       - name: Run staticcheck
         run: ~/go/bin/staticcheck ./...
+        working-directory: ${{ github.workspace }}
